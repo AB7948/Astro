@@ -1,0 +1,76 @@
+{% load static %}
+{% include 'main/header.html' %}
+
+<section class="container py-5">
+
+    <h2 class="fw-bold mb-4">Welcome, User</h2>
+
+    <!-- Quick Actions -->
+    <div class="mb-4">
+        <a href="{% url 'book' %}" class="btn btn-primary me-2">Book Appointment</a>
+        <a href="{% url 'appointment_history' %}" class="btn btn-secondary">View History</a>
+    </div>
+
+    <!-- Upcoming Appointment -->
+    <div class="card shadow-sm p-4 mb-4">
+        <h4 class="fw-bold mb-3">Your Upcoming Appointment</h4>
+
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <p class="mb-1"><strong>Astrologer:</strong> Astro Shivani</p>
+                <p class="mb-1"><strong>Date:</strong> 15 Feb 2025</p>
+                <p class="mb-1"><strong>Time:</strong> 4:00 PM</p>
+                <p class="mb-1"><strong>Mode:</strong> Video Call</p>
+            </div>
+
+            <span class="badge bg-warning text-dark p-2">Upcoming</span>
+        </div>
+    </div>
+
+    <!-- Previous Appointments -->
+    <div class="card shadow-sm p-4">
+        <h4 class="fw-bold mb-3">Previous Appointments</h4>
+
+        <div class="table-responsive">
+            <table class="table table-striped align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Mode</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>10 Feb 2025</td>
+                        <td>4:00 PM</td>
+                        <td>Video Call</td>
+                        <td><span class="badge bg-success">Completed</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>05 Feb 2025</td>
+                        <td>3:00 PM</td>
+                        <td>Call</td>
+                        <td><span class="badge bg-success">Completed</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>02 Feb 2025</td>
+                        <td>6:00 PM</td>
+                        <td>Chat</td>
+                        <td><span class="badge bg-danger">Missed</span></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</section>
+
+{% include 'main/footer.html' %}

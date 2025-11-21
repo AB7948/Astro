@@ -1,0 +1,91 @@
+{% load static %}
+{% include 'main/header.html' %}
+
+<section class="py-5 bg-light">
+    <div class="container">
+
+        <div class="row g-4 align-items-center">
+
+            <!-- Astrologer Photo -->
+            <div class="col-md-4 text-center">
+                <img src="{% static 'main/images/astrologer.jpg' %}"
+                     class="img-fluid rounded-circle shadow"
+                     alt="Astrologer"
+                     style="width: 240px; height: 240px; object-fit: cover;">
+            </div>
+
+            <!-- Astrologer Details -->
+            <div class="col-md-8">
+                <h2 class="fw-bold">Sukumar Alampady</h2>
+                <p class="text-muted">Vedic Astrologer • Tarot Reader • Numerologist</p>
+
+                <div class="mb-3">
+                    <span class="badge bg-warning text-dark">15+ Years Experience</span>
+                    <span class="badge bg-primary">4.9 ⭐ Rating</span>
+                </div>
+
+                <p class="lead">
+                    Specialist in love, marriage, career guidance, financial stability, and life path readings.
+                    Known for accurate predictions and deep spiritual insights.
+                </p>
+
+                <h5 class="fw-bold mt-4">Languages</h5>
+                <p>English, Hindi, Kannada, Malayalam</p>
+
+                <h5 class="fw-bold mt-3">Consultation Fee</h5>
+                <p>₹999 per session</p>
+
+                <a href="{% url 'book' %}" class="btn btn-success btn-lg mt-3">
+                    Book Appointment
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Timings Section -->
+<section class="py-5">
+    <div class="container">
+        <h3 class="fw-bold text-center mb-4">Available Timings</h3>
+
+        <div class="row g-3 justify-content-center">
+
+            <div class="col-md-3">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Mon – Fri</h5>
+                        <p class="mb-0">10:00 AM – 1:00 PM</p>
+                        <p class="mb-0">4:00 PM – 8:00 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Saturday</h5>
+                        <p class="mb-0">11:00 AM – 6:00 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Sunday</h5>
+                        <p class="mb-0 text-danger fw-bold">Holiday</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="{% url 'book' %}" class="btn btn-primary btn-lg">Book Now</a>
+        </div>
+
+    </div>
+</section>
+
+{% include 'main/footer.html' %}

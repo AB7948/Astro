@@ -1,0 +1,83 @@
+{% load static %}
+{% include 'main/header.html' %}
+
+<section class="container py-5">
+
+    <h2 class="fw-bold mb-4 text-center">Book Appointment</h2>
+
+    <div class="row g-4">
+
+        <!-- Astrologer Summary -->
+        <div class="col-md-4">
+            <div class="card shadow-sm p-4 text-center">
+
+                <img src="{% static 'main/images/astrologer.jpg' %}"
+                     class="img-fluid rounded-circle mb-3 shadow-sm"
+                     style="width:160px; height:160px; object-fit:cover;">
+
+                <h4 class="fw-bold">Astro Shivani</h4>
+                <p class="text-muted">Vedic Astrology | Tarot | Numerology</p>
+
+                <span class="badge bg-warning text-dark mb-2">15+ Years Experience</span>
+                <p class="fw-bold mt-2">₹999 / Session</p>
+            </div>
+        </div>
+
+        <!-- Booking Form -->
+        <div class="col-md-8">
+            <div class="card shadow-sm p-4">
+
+                <h5 class="fw-bold mb-3">Select Date</h5>
+                <input type="date" class="form-control mb-4" required>
+
+                <h5 class="fw-bold mb-3">Select Time Slot</h5>
+
+                <div class="row g-3" id="time-slots">
+
+                    {% comment %} Time Slot Buttons {% endcomment %}
+                    <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center">10:00 AM</div></div>
+                    <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center">11:00 AM</div></div>
+                    <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center">12:00 PM</div></div>
+                    <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center">4:00 PM</div></div>
+                    <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center">5:00 PM</div></div>
+                    <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center">6:00 PM</div></div>
+
+                </div>
+
+                <button class="btn btn-success w-100 mt-4 py-2 fw-bold">
+                    Confirm Appointment
+                </button>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<style>
+    .time-slot {
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .time-slot:hover {
+        background-color: #ffeeba;
+    }
+    .time-slot.active {
+        background-color: #ffc107;
+        color: black;
+        font-weight: bold;
+    }
+</style>
+
+<script>
+    // Toggle Selected Time Slot
+    document.querySelectorAll('.time-slot').forEach(slot => {
+        slot.addEventListener('click', () => {
+            document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('active'));
+            slot.classList.add('active');
+        });
+    });
+</script>
+
+{% include 'main/footer.html' %}

@@ -1,0 +1,83 @@
+{% load static %}
+{% include 'main/header.html' %}
+
+<section class="container py-5">
+
+    <h2 class="fw-bold mb-4">Astrologer Dashboard</h2>
+
+    <!-- Quick Stats -->
+    <div class="row g-4 mb-4">
+
+        <div class="col-md-4">
+            <div class="card shadow-sm p-4 text-center">
+                <h4 class="fw-semibold">Today's Appointments</h4>
+                <p class="display-6 text-primary">5</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm p-4 text-center">
+                <h4 class="fw-semibold">Completed</h4>
+                <p class="display-6 text-success">4</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm p-4 text-center">
+                <h4 class="fw-semibold">Pending</h4>
+                <p class="display-6 text-warning">1</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Today's Appointment List -->
+    <div class="card shadow-sm p-4">
+        <h4 class="fw-bold mb-3">Today's Appointments</h4>
+
+        <div class="table-responsive">
+            <table class="table table-bordered align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Client Name</th>
+                        <th>Time</th>
+                        <th>Mode</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Rahul Kumar</td>
+                        <td>10:00 AM</td>
+                        <td>Video Call</td>
+                        <td><span class="badge bg-success">Completed</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Aarav Mehta</td>
+                        <td>12:30 PM</td>
+                        <td>Chat</td>
+                        <td><span class="badge bg-warning text-dark">Pending</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Diya Sharma</td>
+                        <td>3:00 PM</td>
+                        <td>Call</td>
+                        <td><span class="badge bg-success">Completed</span></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a href="{% url 'schedule' %}" class="btn btn-dark">Manage Schedule</a>
+        <a href="{% url 'astro_login' %}" class="btn btn-danger ms-2">Logout</a>
+    </div>
+
+</section>
+
+{% include 'main/footer.html' %}

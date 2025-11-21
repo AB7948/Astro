@@ -1,0 +1,56 @@
+{% load static %}
+{% include 'main/header.html' %}
+
+<section class="container py-5">
+
+    <h2 class="fw-bold mb-4">Appointment History</h2>
+
+    <div class="card shadow-sm p-4">
+
+        <div class="table-responsive">
+            <table class="table table-striped align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Astrologer</th>
+                        <th>Mode</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>10 Feb 2025</td>
+                        <td>4:00 PM</td>
+                        <td>Astro Shivani</td>
+                        <td>Video Call</td>
+                        <td><span class="badge bg-success">Completed</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>18 Jan 2025</td>
+                        <td>6:00 PM</td>
+                        <td>Astro Shivani</td>
+                        <td>Chat</td>
+                        <td><span class="badge bg-success">Completed</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>08 Dec 2024</td>
+                        <td>5:30 PM</td>
+                        <td>Astro Shivani</td>
+                        <td>Call</td>
+                        <td><span class="badge bg-danger">Cancelled</span></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</section>
+
+{% include 'main/footer.html' %}

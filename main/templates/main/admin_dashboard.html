@@ -1,0 +1,37 @@
+{% load static %}
+{% include 'main/header.html' %}
+
+<section class="container py-5">
+    <h2 class="fw-bold mb-4">Admin Dashboard</h2>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="card shadow-sm p-4 text-center">
+                <h4 class="fw-bold">Total Users</h4>
+                <p class="display-6 text-primary">152</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm p-4 text-center">
+                <h4 class="fw-bold">Total Appointments</h4>
+                <p class="display-6 text-success">389</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm p-4 text-center">
+                <h4 class="fw-bold">Astrologer Availability</h4>
+                <p class="display-6 text-warning">Online</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="mt-5">
+        <a href="{% url 'admin_login' %}" class="btn btn-danger">Logout</a>
+    </div>
+</section>
+
+{% include 'main/footer.html' %}

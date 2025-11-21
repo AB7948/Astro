@@ -1,0 +1,79 @@
+{% load static %}
+{% include 'main/header.html' %}
+
+<!-- HERO / ABOUT ASTROLOGER SECTION -->
+<section class="py-5 bg-light">
+    <div class="container py-5">
+        <div class="row align-items-center">
+
+            <!-- Astrologer Image -->
+            <div class="col-md-5 text-center">
+                <img src="{% static 'main/images/astrologer.jpg' %}" 
+                     alt="Astrologer"
+                     class="img-fluid rounded shadow"
+                     style="max-height: 350px; object-fit: cover;">
+            </div>
+
+            <!-- Astrologer Info -->
+            <div class="col-md-7 mt-4 mt-md-0">
+                <h1 class="fw-bold">About Our Astrologer</h1>
+                <p class="mt-3 fs-5">
+                    With years of experience in Vedic Astrology, Tarot Reading, and Numerology, 
+                    our expert provides accurate insights and personalized guidance that help 
+                    transform lives. You are in the right place for clarity and direction.
+                </p>
+
+                <a href="{% url 'astrologer_profile' %}" class="btn btn-warning btn-lg fw-bold mt-3">
+                    View Full Profile
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES SECTION -->
+<section class="container py-5">
+
+    <h2 class="fw-bold text-center mb-4">Our Services</h2>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="card shadow-sm p-4 text-center">
+                <img src="{% static 'main/images/tarot.png' %}" style="height:80px;" class="mb-3" />
+                <h4 class="fw-bold">Tarot Reading</h4>
+                <p>Get answers about love, career, and life path.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm p-4 text-center">
+                <img src="{% static 'main/images/vedic.png' %}" style="height:80px;" class="mb-3" />
+                <h4 class="fw-bold">Vedic Astrology</h4>
+                <p>Accurate predictions and remedies based on birth chart.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm p-4 text-center">
+                <img src="{% static 'main/images/numerology.png' %}" style="height:80px;" class="mb-3" />
+                <h4 class="fw-bold">Numerology</h4>
+                <p>Understand your life purpose and destiny numbers.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="py-5 bg-light text-center">
+    <h2 class="fw-bold">Ready for a Powerful Session?</h2>
+    <p class="mt-2">Book your consultation now and transform your life.</p>
+
+    <a href="{% url 'book' %}" class="btn btn-primary btn-lg mt-3">
+        Book Appointment
+    </a>
+</section>
+
+{% include 'main/footer.html' %}
