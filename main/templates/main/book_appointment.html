@@ -7,9 +7,9 @@
 
     <div class="row g-4">
 
-        <!-- Astrologer Summary -->
-        <div class="col-md-4">
-            <div class="card shadow-sm p-4 text-center">
+        <!-- Astrologer Summary (Centered Card) -->
+        <div class="col-md-4 d-flex justify-content-center">
+            <div class="card shadow-sm p-4 text-center" style="width: 100%; max-width: 320px;">
 
                 <img src="{% static 'main/images/astrologer.jpg' %}"
                      class="profile-img mb-3 shadow"
@@ -44,12 +44,24 @@
 
                     <div class="row g-3" id="time-slots">
 
-                        <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center" data-time="10:00">10:00 AM</div></div>
-                        <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center" data-time="11:00">11:00 AM</div></div>
-                        <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center" data-time="12:00">12:00 PM</div></div>
-                        <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center" data-time="16:00">4:00 PM</div></div>
-                        <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center" data-time="17:00">5:00 PM</div></div>
-                        <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center" data-time="18:00">6:00 PM</div></div>
+                        <div class="col-6 col-md-4">
+                            <div class="time-slot border p-2 rounded text-center" data-time="10:00">10:00 AM</div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="time-slot border p-2 rounded text-center" data-time="11:00">11:00 AM</div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="time-slot border p-2 rounded text-center" data-time="12:00">12:00 PM</div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="time-slot border p-2 rounded text-center" data-time="16:00">4:00 PM</div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="time-slot border p-2 rounded text-center" data-time="17:00">5:00 PM</div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="time-slot border p-2 rounded text-center" data-time="18:00">6:00 PM</div>
+                        </div>
 
                     </div>
 
@@ -67,6 +79,7 @@
 </section>
 
 <style>
+    /* Centered Modern Portrait Image */
     .profile-img {
         width: 200px;
         height: 240px;
@@ -76,6 +89,7 @@
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 
+    /* Time slot styles */
     .time-slot {
         cursor: pointer;
         transition: 0.2s;
@@ -100,7 +114,7 @@
     const timeHiddenInput = document.getElementById("appointment-time");
     const today = new Date().toISOString().split("T")[0];
 
-    // Prevent past dates
+    // Set minimum selectable date and default to today
     dateInput.setAttribute("min", today);
     dateInput.value = today;
 
@@ -112,7 +126,6 @@
 
     function updateTimeSlots() {
         let selectedDate = dateInput.value;
-
         let now = new Date();
         let currentMinutes = now.getHours() * 60 + now.getMinutes();
 
@@ -142,7 +155,7 @@
     // Update on date change
     dateInput.addEventListener("change", updateTimeSlots);
 
-    // Slot selection
+    // Time slot selection handler
     document.querySelectorAll('.time-slot').forEach(slot => {
         slot.addEventListener('click', () => {
             if (slot.classList.contains("disabled")) return;
@@ -154,7 +167,7 @@
         });
     });
 
-    // Initial run
+    // Initial load update
     updateTimeSlots();
 </script>
 
