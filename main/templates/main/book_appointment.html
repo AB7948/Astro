@@ -12,14 +12,17 @@
             <div class="card shadow-sm p-4 text-center">
 
                 <img src="{% static 'main/images/astrologer.jpg' %}"
-                     class="img-fluid rounded-circle mb-3 shadow-sm"
-                     style="width:160px; height:160px; object-fit:cover;">
+                     class="profile-img mb-3 shadow"
+                     alt="Astrologer">
 
-                <h4 class="fw-bold">Sukumar Alampady</h4>
-                <p class="text-muted">Vedic Astrology | Tarot | Numerology</p>
+                <h4 class="fw-bold mb-1">Sukumar Alampady</h4>
+                <p class="text-muted">Vedic Astrology • Tarot • Numerology</p>
 
-                <span class="badge bg-warning text-dark mb-2">15+ Years Experience</span>
-                <p class="fw-bold mt-2">₹999 / Session</p>
+                <span class="badge bg-warning text-dark mb-2 px-3 py-2 rounded-pill">
+                    15+ Years Experience
+                </span>
+
+                <p class="fw-bold fs-5 mt-2">₹999 / Session</p>
             </div>
         </div>
 
@@ -64,6 +67,15 @@
 </section>
 
 <style>
+    .profile-img {
+        width: 200px;
+        height: 240px;
+        object-fit: cover;
+        border-radius: 18px;
+        border: 4px solid white;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
     .time-slot {
         cursor: pointer;
         transition: 0.2s;
@@ -90,7 +102,7 @@
 
     // Prevent past dates
     dateInput.setAttribute("min", today);
-    dateInput.value = today;  // <<< IMPORTANT FIX
+    dateInput.value = today;
 
     // Convert HH:MM → total minutes
     function getMinutes(timeStr) {
