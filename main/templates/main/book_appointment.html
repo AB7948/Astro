@@ -7,9 +7,9 @@
 
     <div class="row g-4">
 
-        <!-- Astrologer Summary (Centered Card) -->
-        <div class="col-md-4 d-flex justify-content-center">
-            <div class="card shadow-sm p-4 text-center" style="width: 100%; max-width: 320px;">
+        <!-- Astrologer Summary (Perfectly Centered Card) -->
+        <div class="col-md-4 d-flex justify-content-center align-items-start">
+            <div class="card shadow-sm p-4 text-center profile-card">
 
                 <img src="{% static 'main/images/astrologer.jpg' %}"
                      class="profile-img mb-3 shadow"
@@ -47,18 +47,23 @@
                         <div class="col-6 col-md-4">
                             <div class="time-slot border p-2 rounded text-center" data-time="10:00">10:00 AM</div>
                         </div>
+
                         <div class="col-6 col-md-4">
                             <div class="time-slot border p-2 rounded text-center" data-time="11:00">11:00 AM</div>
                         </div>
+
                         <div class="col-6 col-md-4">
                             <div class="time-slot border p-2 rounded text-center" data-time="12:00">12:00 PM</div>
                         </div>
+
                         <div class="col-6 col-md-4">
                             <div class="time-slot border p-2 rounded text-center" data-time="16:00">4:00 PM</div>
                         </div>
+
                         <div class="col-6 col-md-4">
                             <div class="time-slot border p-2 rounded text-center" data-time="17:00">5:00 PM</div>
                         </div>
+
                         <div class="col-6 col-md-4">
                             <div class="time-slot border p-2 rounded text-center" data-time="18:00">6:00 PM</div>
                         </div>
@@ -79,7 +84,7 @@
 </section>
 
 <style>
-    /* Centered Modern Portrait Image */
+    /* Center & fix stylish portrait image */
     .profile-img {
         width: 200px;
         height: 240px;
@@ -87,6 +92,12 @@
         border-radius: 18px;
         border: 4px solid white;
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    /* Perfect centering of the astrologer card */
+    .profile-card {
+        width: 100%;
+        max-width: 320px; /* ensures it stays centered without stretching */
     }
 
     /* Time slot styles */
