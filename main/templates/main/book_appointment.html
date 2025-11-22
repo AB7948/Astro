@@ -5,11 +5,12 @@
 
     <h2 class="fw-bold mb-4 text-center">Book Appointment</h2>
 
-    <div class="row g-4">
+    <!-- UPDATED ROW: Center the content horizontally -->
+    <div class="row g-4 justify-content-center">
 
-        <!-- Astrologer Summary (Perfectly Centered Card) -->
-        <div class="col-md-4 d-flex justify-content-center align-items-start">
-            <div class="card shadow-sm p-4 text-center profile-card">
+        <!-- Astrologer Summary -->
+        <div class="col-md-4 d-flex justify-content-center">
+            <div class="card shadow-sm p-4 text-center" style="width: 100%; max-width: 320px;">
 
                 <img src="{% static 'main/images/astrologer.jpg' %}"
                      class="profile-img mb-3 shadow"
@@ -39,35 +40,15 @@
 
                     <h5 class="fw-bold mb-3">Select Time Slot</h5>
 
-                    <!-- Hidden input for selected time -->
                     <input type="hidden" name="appointment_time" id="appointment-time" required>
 
                     <div class="row g-3" id="time-slots">
-
-                        <div class="col-6 col-md-4">
-                            <div class="time-slot border p-2 rounded text-center" data-time="10:00">10:00 AM</div>
-                        </div>
-
-                        <div class="col-6 col-md-4">
-                            <div class="time-slot border p-2 rounded text-center" data-time="11:00">11:00 AM</div>
-                        </div>
-
-                        <div class="col-6 col-md-4">
-                            <div class="time-slot border p-2 rounded text-center" data-time="12:00">12:00 PM</div>
-                        </div>
-
-                        <div class="col-6 col-md-4">
-                            <div class="time-slot border p-2 rounded text-center" data-time="16:00">4:00 PM</div>
-                        </div>
-
-                        <div class="col-6 col-md-4">
-                            <div class="time-slot border p-2 rounded text-center" data-time="17:00">5:00 PM</div>
-                        </div>
-
-                        <div class="col-6 col-md-4">
-                            <div class="time-slot border p-2 rounded text-center" data-time="18:00">6:00 PM</div>
-                        </div>
-
+                        <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center" data-time="10:00">10:00 AM</div></div>
+                        <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center" data-time="11:00">11:00 AM</div></div>
+                        <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center" data-time="12:00">12:00 PM</div></div>
+                        <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center" data-time="16:00">4:00 PM</div></div>
+                        <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center" data-time="17:00">5:00 PM</div></div>
+                        <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center" data-time="18:00">6:00 PM</div></div>
                     </div>
 
                     <button type="submit" class="btn btn-success w-100 mt-4 py-2 fw-bold">
@@ -84,7 +65,6 @@
 </section>
 
 <style>
-    /* Center & fix stylish portrait image */
     .profile-img {
         width: 200px;
         height: 240px;
@@ -94,13 +74,6 @@
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 
-    /* Perfect centering of the astrologer card */
-    .profile-card {
-        width: 100%;
-        max-width: 320px; /* ensures it stays centered without stretching */
-    }
-
-    /* Time slot styles */
     .time-slot {
         cursor: pointer;
         transition: 0.2s;
@@ -125,11 +98,9 @@
     const timeHiddenInput = document.getElementById("appointment-time");
     const today = new Date().toISOString().split("T")[0];
 
-    // Set minimum selectable date and default to today
     dateInput.setAttribute("min", today);
     dateInput.value = today;
 
-    // Convert HH:MM → total minutes
     function getMinutes(timeStr) {
         let [hr, min] = timeStr.split(":").map(Number);
         return hr * 60 + min;
@@ -142,16 +113,12 @@
 
         document.querySelectorAll(".time-slot").forEach(slot => {
             slot.classList.remove("disabled", "active");
-
             let slotMinutes = getMinutes(slot.dataset.time);
-
-            // Disable past time slots for TODAY
             if (selectedDate === today && slotMinutes <= currentMinutes) {
                 slot.classList.add("disabled");
             }
         });
 
-        // Remove selected time if it becomes invalid
         if (timeHiddenInput.value) {
             let selectedMinutes = getMinutes(timeHiddenInput.value);
             if (selectedMinutes <= currentMinutes && selectedDate === today) {
@@ -160,25 +127,18 @@
         }
     }
 
-    // Auto-update every 10 seconds
     setInterval(updateTimeSlots, 10000);
-
-    // Update on date change
     dateInput.addEventListener("change", updateTimeSlots);
 
-    // Time slot selection handler
     document.querySelectorAll('.time-slot').forEach(slot => {
         slot.addEventListener('click', () => {
             if (slot.classList.contains("disabled")) return;
-
             document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('active'));
             slot.classList.add('active');
-
             timeHiddenInput.value = slot.dataset.time;
         });
     });
 
-    // Initial load update
     updateTimeSlots();
 </script>
 
