@@ -31,12 +31,12 @@
                     {% csrf_token %}
 
                     <h5 class="fw-bold mb-3">Select Date</h5>
-                    <input type="date" id="appointment-date" name="appointment_date" 
+                    <input type="date" id="appointment-date" name="appointment_date"
                            class="form-control mb-4" required>
 
                     <h5 class="fw-bold mb-3">Select Time Slot</h5>
 
-                    <!-- Hidden input to store selected time -->
+                    <!-- Hidden input for selected time -->
                     <input type="hidden" name="appointment_time" id="appointment-time" required>
 
                     <div class="row g-3" id="time-slots">
@@ -88,15 +88,16 @@
     const timeHiddenInput = document.getElementById("appointment-time");
     const today = new Date().toISOString().split("T")[0];
 
-    // Prevent past dates
+    // Restrict past dates
     dateInput.setAttribute("min", today);
 
-    // Convert "HH:MM" to minutes
+    // Convert "HH:MM" to minutes since midnight
     function getMinutes(timeStr) {
         let [hr, min] = timeStr.split(":").map(Number);
         return hr * 60 + min;
     }
 
+    // Disable past time slots
     function updateTimeSlots() {
         let selectedDate = dateInput.value;
 
@@ -108,18 +109,28 @@
 
             let slotMinutes = getMinutes(slot.dataset.time);
 
-            // Disable all past times if today is selected
+            // Disable slots earlier than current time (today only)
             if (selectedDate === today && slotMinutes <= currentMinutes) {
                 slot.classList.add("disabled");
             }
         });
 
-        timeHiddenInput.value = ""; // reset selected time
+        // If selected time becomes past → reset
+        if (timeHiddenInput.value) {
+            let selectedMinutes = getMinutes(timeHiddenInput.value);
+            if (selectedMinutes <= currentMinutes && selectedDate === today) {
+                timeHiddenInput.value = "";
+            }
+        }
     }
 
+    // Update every 10 seconds so it auto-disables passed times
+    setInterval(updateTimeSlots, 10000);
+
+    // Update when date changes
     dateInput.addEventListener("change", updateTimeSlots);
 
-    // Time Slot Selection
+    // Time Slot Selection Logic
     document.querySelectorAll('.time-slot').forEach(slot => {
         slot.addEventListener('click', () => {
             if (slot.classList.contains("disabled")) return;
@@ -131,7 +142,7 @@
         });
     });
 
-    // Run initially
+    // Initialize on page load
     updateTimeSlots();
 </script>
 
