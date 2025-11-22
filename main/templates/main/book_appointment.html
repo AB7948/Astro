@@ -28,19 +28,18 @@
             <div class="card shadow-sm p-4">
 
                 <h5 class="fw-bold mb-3">Select Date</h5>
-                <input type="date" class="form-control mb-4" required>
+                <input type="date" id="appointment-date" class="form-control mb-4" required>
 
                 <h5 class="fw-bold mb-3">Select Time Slot</h5>
 
                 <div class="row g-3" id="time-slots">
 
-                    {% comment %} Time Slot Buttons {% endcomment %}
-                    <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center">10:00 AM</div></div>
-                    <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center">11:00 AM</div></div>
-                    <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center">12:00 PM</div></div>
-                    <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center">4:00 PM</div></div>
-                    <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center">5:00 PM</div></div>
-                    <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center">6:00 PM</div></div>
+                    <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center" data-time="10:00">10:00 AM</div></div>
+                    <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center" data-time="11:00">11:00 AM</div></div>
+                    <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center" data-time="12:00">12:00 PM</div></div>
+                    <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center" data-time="16:00">4:00 PM</div></div>
+                    <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center" data-time="17:00">5:00 PM</div></div>
+                    <div class="col-6 col-md-4"><div class="time-slot border p-2 rounded text-center" data-time="18:00">6:00 PM</div></div>
 
                 </div>
 
@@ -60,7 +59,7 @@
         cursor: pointer;
         transition: 0.2s;
     }
-    .time-slot:hover {
+    .time-slot:hover:not(.disabled) {
         background-color: #ffeeba;
     }
     .time-slot.active {
@@ -68,16 +67,62 @@
         color: black;
         font-weight: bold;
     }
+    .time-slot.disabled {
+        background-color: #e9ecef;
+        color: #999;
+        cursor: not-allowed;
+    }
 </style>
 
 <script>
-    // Toggle Selected Time Slot
+    // ----------------------------------------------------
+    // 1️⃣ Prevent Past Dates
+    // ----------------------------------------------------
+    const dateInput = document.getElementById("appointment-date");
+    const today = new Date().toISOString().split("T")[0];
+    dateInput.setAttribute("min", today);
+
+    // ----------------------------------------------------
+    // 2️⃣ Disable old time slots for today
+    // ----------------------------------------------------
+    function updateTimeSlots() {
+        let selectedDate = dateInput.value;
+        let now = new Date();
+
+        document.querySelectorAll(".time-slot").forEach(slot => {
+            slot.classList.remove("disabled", "active");
+
+            let slotTime = slot.dataset.time; // like "10:00" or "16:00"
+            let [hr, min] = slotTime.split(":");
+            
+            let slotDateTime = new Date();
+            slotDateTime.setHours(hr, min, 0, 0);
+
+            // If selected date is today, disable past times
+            if (selectedDate === today) {
+                if (slotDateTime < now) {
+                    slot.classList.add("disabled");
+                }
+            }
+        });
+    }
+
+    dateInput.addEventListener("change", updateTimeSlots);
+
+    // ----------------------------------------------------
+    // 3️⃣ Time slot selection
+    // ----------------------------------------------------
     document.querySelectorAll('.time-slot').forEach(slot => {
         slot.addEventListener('click', () => {
+            if (slot.classList.contains("disabled")) return;
+
             document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('active'));
             slot.classList.add('active');
         });
     });
+
+    // Initialize on page load
+    updateTimeSlots();
 </script>
 
 {% include 'main/footer.html' %}
