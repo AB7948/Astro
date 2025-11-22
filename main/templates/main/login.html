@@ -7,19 +7,12 @@
 
     <div class="card shadow-sm p-4">
 
-        <!-- Optional: Display error message -->
-        {% if error %}
-        <div class="alert alert-danger text-center py-2">
-            {{ error }}
-        </div>
-        {% endif %}
-
         <form method="POST" action="{% url 'login' %}">
             {% csrf_token %}
 
             <div class="mb-3">
                 <label class="form-label fw-semibold">Email</label>
-                <input type="email" 
+                <input type="text" 
                        name="email" 
                        class="form-control" 
                        placeholder="Enter your email" 
