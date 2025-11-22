@@ -23,6 +23,7 @@
                     transform lives. You are in the right place for clarity and direction.
                 </p>
 
+                <!-- View Full Profile -->
                 <a href="{% url 'astrologer_profile' %}" class="btn btn-warning btn-lg fw-bold mt-3">
                     View Full Profile
                 </a>
@@ -71,7 +72,8 @@
     <h2 class="fw-bold">Ready for a Powerful Session?</h2>
     <p class="mt-2">Book your consultation now and transform your life.</p>
 
-    <a href="{% url 'book' %}" class="btn btn-primary btn-lg mt-3">
+    <!-- Updated Button: Always redirect to Login -->
+    <a href="{% url 'login' %}" class="btn btn-primary btn-lg mt-3">
         Book Appointment
     </a>
 </section>

@@ -35,7 +35,8 @@
                 <h5 class="fw-bold mt-3">Consultation Fee</h5>
                 <p>₹999 per session</p>
 
-                <a href="{% url 'book' %}" class="btn btn-success btn-lg mt-3">
+                <!-- Updated Book Appointment Button → Redirect to Login -->
+                <a href="{% url 'login' %}" class="btn btn-success btn-lg mt-3">
                     Book Appointment
                 </a>
             </div>
@@ -82,7 +83,8 @@
         </div>
 
         <div class="text-center mt-4">
-            <a href="{% url 'book' %}" class="btn btn-primary btn-lg">Book Now</a>
+            <!-- Updated Book Now Button → Redirect to Login -->
+            <a href="{% url 'login' %}" class="btn btn-primary btn-lg">Book Now</a>
         </div>
 
     </div>
