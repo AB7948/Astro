@@ -88,16 +88,16 @@
     const timeHiddenInput = document.getElementById("appointment-time");
     const today = new Date().toISOString().split("T")[0];
 
-    // Restrict past dates
+    // Prevent past dates
     dateInput.setAttribute("min", today);
+    dateInput.value = today;  // <<< IMPORTANT FIX
 
-    // Convert "HH:MM" to minutes since midnight
+    // Convert HH:MM → total minutes
     function getMinutes(timeStr) {
         let [hr, min] = timeStr.split(":").map(Number);
         return hr * 60 + min;
     }
 
-    // Disable past time slots
     function updateTimeSlots() {
         let selectedDate = dateInput.value;
 
@@ -109,13 +109,13 @@
 
             let slotMinutes = getMinutes(slot.dataset.time);
 
-            // Disable slots earlier than current time (today only)
+            // Disable past time slots for TODAY
             if (selectedDate === today && slotMinutes <= currentMinutes) {
                 slot.classList.add("disabled");
             }
         });
 
-        // If selected time becomes past → reset
+        // Remove selected time if it becomes invalid
         if (timeHiddenInput.value) {
             let selectedMinutes = getMinutes(timeHiddenInput.value);
             if (selectedMinutes <= currentMinutes && selectedDate === today) {
@@ -124,13 +124,13 @@
         }
     }
 
-    // Update every 10 seconds so it auto-disables passed times
+    // Auto-update every 10 seconds
     setInterval(updateTimeSlots, 10000);
 
-    // Update when date changes
+    // Update on date change
     dateInput.addEventListener("change", updateTimeSlots);
 
-    // Time Slot Selection Logic
+    // Slot selection
     document.querySelectorAll('.time-slot').forEach(slot => {
         slot.addEventListener('click', () => {
             if (slot.classList.contains("disabled")) return;
@@ -142,7 +142,7 @@
         });
     });
 
-    // Initialize on page load
+    // Initial run
     updateTimeSlots();
 </script>
 
